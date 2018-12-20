@@ -1,2 +1,2 @@
-# webpack_base
-This is a basic webpack configuration using webpack dev server
+#  VT-Observer
+This is a helper project to be used while developing html content.
