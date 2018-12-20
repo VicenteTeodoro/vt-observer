@@ -1,0 +1,58 @@
+.change-spy-conf{ 
+  position: absolute;
+  top:0;
+  left: 200px;
+  background-color: #CDCDCD2e;
+  border-width: 1px;
+  border-style: solid;
+  border-color:#0000001f;
+  height: 600px;
+  width: 800px;
+  visibility: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+.change-spy-conf .children{ 
+  color: black;
+}
+.change-spy-conf input { 
+    left: 42px;
+    top: 32px;
+    position: absolute; 
+    display: none;
+}
+.change-spy-conf span{
+  position: absolute;
+  left: 60px;
+  top: 31px; 
+  display: none;
+}
+.change-spy-conf img{
+  position: absolute;
+  left: 784px; 
+}
+.change-spy-conf hr{
+  position: absolute;
+  width: calc(100% - 1px);
+  top: 10px;
+  border-top-style: solid;
+  border-top-color: black;
+  border-bottom-style: none; 
+}
+.change-spy-conf button{
+  position: absolute;
+  top: 561px;
+  height: 25px;
+  width: calc(800px / 1);
+}
+.change-spy-conf .start-stop{
+  left: 1px; 
+}
+.change-spy-conf #vt-canvas {
+  position: absolute;
+  top: 25px;
+  left: 50px; 
+}
