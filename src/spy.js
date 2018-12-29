@@ -34,7 +34,7 @@ export default class Spy {
 
     n.childNodes.forEach(el => {
       let inf = null;
-      if (el.nodeType !== 1) { return };
+      if (el.nodeType !== 1) { return; }
       inf = new Info();
       if (map[el.elName] === undefined) {
         map[el.elName] = 0;
@@ -57,6 +57,6 @@ export default class Spy {
     }, 1000);
   }
   delete() {
-    db.remove(this._info.p)
+    db.remove(this._info.p);
   }
 } 

@@ -2,22 +2,21 @@ import { log } from '../util';
 export default class VTDatabase {
   constructor(dbName, storeNames, defaultStoreName) {
     let request = null;
+    let iDB = null;
     this._dbName = dbName;
     this._storeNames = storeNames;
     this._defaultStoreName = defaultStoreName;
 
     this._db = null;
 
-    !indexedDB && (indexedDB = indexedDB = indexedDB || mozIndexedDB || webkitIndexedDB || msIndexedDB);
-    !IDBTransaction && (IDBTransaction = IDBTransaction || webkitIDBTransaction || msIDBTransaction);
-    !IDBKeyRange && (IDBKeyRange = IDBKeyRange || webkitIDBKeyRange || msIDBKeyRange);
+    iDB = indexedDB || mozIndexedDB || webkitIndexedDB || msIndexedDB;
 
-    if (!indexedDB) {
+    if (!iDB) {
       log.error('Support for indexed dabase not found.');
       return;
     }
 
-    request = indexedDB.open(this._dbName, 4);
+    request = iDB.open(this._dbName, 4);
     request.onerror = () => log.error('Unable to create database');
     request.onsuccess = () => this._db = request.result;
     request.onupgradeneeded = () => {
@@ -25,7 +24,7 @@ export default class VTDatabase {
       this._storeNames.forEach(sn => {
         this._db.createObjectStore(sn);
       });
-    }
+    };
   }
   add(data, key, storeName) {
     let request = null;

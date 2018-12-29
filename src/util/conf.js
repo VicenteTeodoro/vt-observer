@@ -26,17 +26,17 @@ export default class Conf {
       this._parent.style.visibility = 'visible';
       db.get(xpath.create(n)).then((e) => {
         if (!e.target.result) {
-          btn.innerHTML = "Start Watching";
+          btn.innerHTML = 'Start Watching';
           return;
         }
         action = -1;
-        btn.innerHTML = "Stop Watching";
+        btn.innerHTML = 'Stop Watching';
       });
       btn.onclick = (e) => {
         resolve({ result: { action: action, addChildren: true, node: this._tree.selectedNode } });
         this._hide();
         e.stopPropagation();
-      }
+      };
     });
   }
   _hide() {
