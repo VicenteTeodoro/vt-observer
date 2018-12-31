@@ -9,7 +9,6 @@ class Validator {
     self.onmessage = this.onmessage.bind(this);
   }
   onmessage(msg) {
-    debugger;
     this._info = JSON.parse(msg.data);
     this._validation.length = 0;
     db.get(this._info.p).then(this._validate.bind(this), (evt) => log.error('Validator could not get data for: ' + this._info.p));

@@ -14,7 +14,6 @@ export default class Spy {
     this._info.p = xpath.create(this._el);
     this._validator = new Worker();
     this._validator.addEventListener('message', () => {
-      debugger;
     });
     this._check();
   }
