@@ -15,6 +15,7 @@ export default class Conf {
     setTimeout(() => {
       document.body.appendChild(this._parent);
       this._tree = new Tree();
+      this._tree.on('select', this._onTreeSelectionChange.bind(this));
     }, 0);
   }
   show(n, x, y) {
@@ -25,12 +26,10 @@ export default class Conf {
     return new Promise((resolve, reject) => {
       this._parent.style.visibility = 'visible';
       db.get(xpath.create(n)).then((e) => {
-        if (!e.target.result) {
-          btn.innerHTML = 'Start Watching';
-          return;
+        this._changeActionState(!e.target.result);
+        if (e.target.result) {
+          action = -1;
         }
-        action = -1;
-        btn.innerHTML = 'Stop Watching';
       });
       btn.onclick = (e) => {
         resolve({ result: { action: action, addChildren: true, node: this._tree.selectedNode } });
@@ -38,6 +37,19 @@ export default class Conf {
         e.stopPropagation();
       };
     });
+  }
+  _onTreeSelectionChange(evt) {
+    db.get(xpath.create(evt.data.el)).then((e) => {
+      this._changeActionState(!e.target.result);
+    });
+  }
+  _changeActionState(toWatch) {
+    let btn = this._parent.getElementsByTagName('button')[0];
+    if (toWatch) {
+      btn.innerHTML = 'Start Watching';
+      return;
+    }
+    btn.innerHTML = 'Stop Watching';
   }
   _hide() {
     this._parent.style.visibility = 'hidden';
